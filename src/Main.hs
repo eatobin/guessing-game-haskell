@@ -2,7 +2,7 @@
 
 module Main where
 
-import System.Random
+import           System.Random
 -- import Control.Monad
 
 promptLine :: String -> IO String
