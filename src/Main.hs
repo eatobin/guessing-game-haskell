@@ -3,7 +3,7 @@
 module Main where
 
 import System.Random
-import Control.Monad
+-- import Control.Monad
 
 promptLine :: String -> IO String
 promptLine prompt = do
@@ -13,21 +13,14 @@ promptLine prompt = do
 main :: IO ()
 main = do
   putStrLn "Guess the number!"
-
   secretNumber <- randomRIO (1, 100 :: Int)
-
   putStrLn("The secret number is: " ++ show secretNumber)
-
-  do
-    
-    guess <- promptLine "Please input your guess.\n"
-
-    putStrLn ("You guessed: " ++ guess)
-
-    case compare (read guess) secretNumber of
-      LT ->  putStrLn "Too small!"
-      GT -> putStrLn "Too big!"
-      EQ -> putStrLn "You win!"
+  guess <- promptLine "Please input your guess.\n"
+  putStrLn ("You guessed: " ++ guess)
+  case compare (read guess) secretNumber of
+    LT ->  putStrLn "Too small!"
+    GT -> putStrLn "Too big!"
+    EQ -> putStrLn "You win!"
 
 
 
