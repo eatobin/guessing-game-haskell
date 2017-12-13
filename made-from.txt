@@ -1,0 +1,1 @@
+eric@linux-x2vq:haskell_projects$ stack new guessing-game simple
