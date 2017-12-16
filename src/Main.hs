@@ -5,6 +5,7 @@ module Main where
 -- import           Control.Monad.Loops (whileJust_)
 import           System.Random       (randomRIO)
 import           Text.Read (readMaybe)
+import Data.Maybe
 -- import Control.Monad
 
 main :: IO ()
@@ -60,8 +61,14 @@ testIt = do
   secretNumber <- randomRIO (1, 100 :: Int)
   putStrLn ("The secret number is: " ++ show secretNumber)
   go secretNumber
-    where
-      go sn = do
-        putStrLn "Please input your guess."
-        guess <- getLine
-        if (readMaybe guess :: Maybe Int) /= Just sn then putStrLn "keep going" else putStrLn "got it"
+ where
+  go sn = do
+    putStrLn "Please input your guess."
+    guess <- getLine
+    let validNum = readMaybe guess :: Maybe Int
+    if isJust validNum
+      then case compare (fromJust validNum) sn of
+        LT -> putStrLn "Too small!"
+        GT -> putStrLn "Too big!"
+        EQ -> putStrLn "You win!"
+      else go sn
