@@ -68,7 +68,11 @@ testIt = do
     let validNum = readMaybe guess :: Maybe Int
     if isJust validNum
       then case compare (fromJust validNum) sn of
-        LT -> putStrLn "Too small!"
-        GT -> putStrLn "Too big!"
+        LT -> do
+          putStrLn "Too small!"
+          go sn
+        GT -> do
+          putStrLn "Too big!"
+          go sn
         EQ -> putStrLn "You win!"
       else go sn
