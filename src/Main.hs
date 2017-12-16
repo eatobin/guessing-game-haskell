@@ -3,8 +3,8 @@
 module Main where
 
 -- import           Control.Monad.Loops (whileJust_)
--- import           System.Random       (randomRIO)
--- import           Text.Read (readMaybe)
+import           System.Random       (randomRIO)
+import           Text.Read (readMaybe)
 -- import Control.Monad
 
 main :: IO ()
@@ -45,11 +45,23 @@ getUserLines = go ""
     line <- getLine
     if line == "q" then return contents else go (contents ++ line ++ "\n")
 
-testIt :: IO String
+-- testIt :: IO String
+-- testIt = do
+--   putStrLn "ok"
+--   go ""
+--     where
+--       go contents = do
+--         line <- getLine
+--         if line == "q" then return contents else go (contents ++ line ++ "\n")
+
+testIt :: IO ()
 testIt = do
-  putStrLn "ok"
-  go ""
+  putStrLn "Guess the number!"
+  secretNumber <- randomRIO (1, 100 :: Int)
+  putStrLn ("The secret number is: " ++ show secretNumber)
+  go secretNumber
     where
-      go contents = do
-        line <- getLine
-        if line == "q" then return contents else go (contents ++ line ++ "\n")
+      go sn = do
+        putStrLn "Please input your guess."
+        guess <- getLine
+        if (readMaybe guess :: Maybe Int) /= Just sn then putStrLn "keep going" else putStrLn "got it"
