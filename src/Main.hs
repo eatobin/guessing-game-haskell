@@ -5,6 +5,7 @@ module Main where
 import System.Random (randomRIO)
 import Text.Read (readMaybe)
 import Data.Maybe
+import Control.Monad
 
 main :: IO ()
 main = do
@@ -17,8 +18,10 @@ main = do
         putStrLn "Please input your guess."
         guess <- getLine
         let validNum = readMaybe guess :: Maybe Int
+        when (isJust validNum) (putStrLn ("You guessed: " ++ show (fromJust validNum)))
         if isJust validNum
-          then case compare (fromJust validNum) sn of
+          then
+            case compare (fromJust validNum) sn of
             LT -> do
               putStrLn "Too small!"
               go sn
