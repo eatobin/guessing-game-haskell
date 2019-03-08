@@ -2,10 +2,10 @@
 
 module Main where
 
-import System.Random (randomRIO)
-import Text.Read (readMaybe)
-import Data.Maybe
-import Control.Monad
+import           System.Random                  ( randomRIO )
+import           Text.Read                      ( readMaybe )
+import           Data.Maybe
+import           Control.Monad
 
 main :: IO ()
 main = do
@@ -13,20 +13,20 @@ main = do
   secretNumber <- randomRIO (1, 100 :: Int)
   putStrLn ("The secret number is: " ++ show secretNumber)
   go secretNumber
-    where
-      go sn = do
-        putStrLn "Please input your guess."
-        guess <- getLine
-        let validNum = readMaybe guess :: Maybe Int
-        when (isJust validNum) (putStrLn ("You guessed: " ++ show (fromJust validNum)))
-        if isJust validNum
-          then
-            case compare (fromJust validNum) sn of
-            LT -> do
-              putStrLn "Too small!"
-              go sn
-            GT -> do
-              putStrLn "Too big!"
-              go sn
-            EQ -> putStrLn "You win!"
-          else go sn
+ where
+  go sn = do
+    putStrLn "Please input your guess."
+    guess <- getLine
+    let validNum = readMaybe guess :: Maybe Int
+    when (isJust validNum)
+         (putStrLn ("You guessed: " ++ show (fromJust validNum)))
+    if isJust validNum
+      then case compare (fromJust validNum) sn of
+        LT -> do
+          putStrLn "Too small!"
+          go sn
+        GT -> do
+          putStrLn "Too big!"
+          go sn
+        EQ -> putStrLn "You win!"
+      else go sn
