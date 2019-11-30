@@ -4,5 +4,8 @@ Build/install:
 [eric@linux-x2vq guessing-game](master)$ stack build --copy-compiler-tool ghcid
 [eric@linux-x2vq guessing-game](master)$ stack exec -- which ghcid
 
+[eric@linux-x2vq guessing-game](master)$ stack build --copy-compiler-tool apply-refact hlint stylish-haskell
+
+
 Run:
 [eric@linux-x2vq guessing-game](master)$ stack exec -- ghcid -c "stack ghci guessing-game"
