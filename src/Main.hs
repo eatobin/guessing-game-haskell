@@ -2,10 +2,10 @@
 
 module Main where
 
-import Control.Monad
-import Data.Maybe
-import System.Random (randomRIO)
-import Text.Read (readMaybe)
+import           Control.Monad
+import           Data.Maybe
+import           System.Random (randomRIO)
+import           Text.Read     (readMaybe)
 
 main :: IO ()
 main = do
