@@ -1,1 +1,1 @@
-eric@linux-x2vq:haskell_projects$ stack --resolver lts-14.27 new guessing-game simple
+stack --resolver lts-18.28 new guessing-game
