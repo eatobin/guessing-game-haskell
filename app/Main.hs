@@ -1,9 +1,10 @@
 module Main (main) where
 
-import           Control.Monad
-import           Data.Maybe
-import           System.Random (randomRIO)
-import           Text.Read     (readMaybe)
+import Control.Monad
+import Data.Maybe
+import qualified System.IO as SIO
+import System.Random (randomRIO)
+import Text.Read (readMaybe)
 
 main :: IO ()
 main = do
@@ -14,6 +15,7 @@ main = do
   where
     go sn = do
       putStrLn "Please input your guess."
+      SIO.hFlush SIO.stdout
       guess <- getLine
       let validNum = readMaybe guess :: Maybe Int
       when
@@ -21,11 +23,11 @@ main = do
         (putStrLn ("You guessed: " ++ show (fromJust validNum)))
       if isJust validNum
         then case compare (fromJust validNum) sn of
-               LT -> do
-                 putStrLn "Too small!"
-                 go sn
-               GT -> do
-                 putStrLn "Too big!"
-                 go sn
-               EQ -> putStrLn "You win!"
+          LT -> do
+            putStrLn "Too small!"
+            go sn
+          GT -> do
+            putStrLn "Too big!"
+            go sn
+          EQ -> putStrLn "You win!"
         else go sn
