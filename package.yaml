@@ -48,6 +48,9 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - guessing-game
+    when:
+      - condition: false
+        other-modules: Paths_guessing_game
 
 tests:
   guessing-game-test:
