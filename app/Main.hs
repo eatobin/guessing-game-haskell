@@ -1,7 +1,7 @@
 module Main (main) where
 
-import Control.Monad
-import Data.Maybe
+import Control.Monad (when)
+import Data.Maybe (fromJust, isJust)
 import qualified System.IO as SIO
 import System.Random (randomRIO)
 import Text.Read (readMaybe)
